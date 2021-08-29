@@ -11,5 +11,7 @@ Table of Contents
     :titlesonly:
 
     modules/core
+    modules/material
+    modules/render
     modules/scenegraph
     modules/shadercache

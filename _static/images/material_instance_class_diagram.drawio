@@ -1,0 +1,45 @@
+<mxfile host="65bd71144e">
+    <diagram id="pIsPSVw4wNhW4OB5O9Dt" name="Page-1">
+        <mxGraphModel dx="1107" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="176" value="MaterialInstance" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="240" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="177" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;" parent="1" source="178" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="320" y="80" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="120" y="80"/>
+                            <mxPoint x="290" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="178" value="ForwardMaterialInstance" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry y="120" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="179" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=block;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="180" target="176" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="320" y="60" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="180" value="DeferredMaterialInstance" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="120" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="181" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;" parent="1" source="182" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="320" y="80" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="540" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="182" value="PostProcessMaterialInstance" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="120" width="200" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
