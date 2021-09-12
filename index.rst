@@ -15,3 +15,4 @@ Table of Contents
     modules/render
     modules/scenegraph
     modules/shadercache
+    modules/texture
