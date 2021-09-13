@@ -40,3 +40,15 @@ Mipmaps
 
 .. note::
     Not yet implemented.
+
+Compression
+-----------
+
+.. note::
+    Not yet implemented.
+
+Atlases
+-------
+
+.. note::
+    Not yet implemented.
