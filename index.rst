@@ -12,6 +12,8 @@ Table of Contents
 
     modules/core
     modules/material
+    modules/memory
+    modules/mesh
     modules/render
     modules/scenegraph
     modules/shadercache
