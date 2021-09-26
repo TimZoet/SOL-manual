@@ -2,10 +2,11 @@ sol.render
 ==========
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :titlesonly:
     :hidden:
 
+    render/render_manager
     render/forward
     render/deferred
 
