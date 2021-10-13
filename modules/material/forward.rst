@@ -1,5 +1,15 @@
-Forward Materials
-=================
+Forward Material
+================
+
+.. toctree::
+    :maxdepth: 2
+    :titlesonly:
+    :hidden:
+
+    forward/instance
+    forward/uniform_buffers
+    forward/samplers
+    forward/push_constants
 
 A new forward material can be implemented by inheriting from the :code:`sol::ForwardMaterial` class. A forward material
 requires a shader module for both the vertex and fragment stage. A possible implementation of a new material class could
@@ -34,58 +44,45 @@ more or less look like this:
 Whether you define a new class for each of your shaders, or deal with this variation inside of a small number of classes
 is entirely up to you. The system is very flexible.
 
-Naturally, the shaders could contain all sorts of samplers, uniform buffers, etc. These must all be defined through the
-material layout. After specifying the layout and before a material can be used during rendering, the layout object must 
-be finalized. Materials cannot be modified after that.
-
-.. figure:: /_static/images/forward_material_layout.svg
-    :alt: Diagram of the forward material layout.
-
-Uniform Buffers
+Material Layout
 ---------------
 
-Consider a forward material with the following shaders:
-
-.. code-block:: c
-
-    // Vertex shader:
-
-    layout(binding = 1) uniform UBO1
-    {
-        mat4 value;
-    } ubo1[3];
-
-    ...
-
-    // Fragment shader:
-
-    layout(binding = 0) uniform UBO0
-    {
-        vec4 value;
-    } ubo0;
-
-    layout(binding = 2) uniform UBO2
-    {
-        vec4 value0;
-        vec4 value1;
-    } ubo2;
-
-    ...
-
-This material's layout can be defined as follows:
+Naturally, the shaders could contain all sorts of samplers, uniform buffers, push constants, etc. These must all be 
+defined through the material layout. After specifying the layout and before a material can be used during rendering, the
+layout object must be finalized. It cannot be modified after that.
 
 .. code-block:: cpp
 
-    MyMaterial::MyMaterial(...)
+    MyMaterial::MyMaterial(...) : ForwardMaterial(...)
     {
-        layout.addUniformBuffer(0, sizeof(float) * 4, 1, VK_SHADER_STAGE_FRAGMENT_BIT);
-        layout.addUniformBuffer(1, sizeof(float) * 16, 3, VK_SHADER_STAGE_VERTEX_BIT);
-        layout.addUniformBuffer(2, sizeof(float) * 4 * 2, 1, VK_SHADER_STAGE_FRAGMENT_BIT);
+        // Specify material layout.
+        auto& ub0 = layout.addUniformBuffer(...);
+        ...
+        auto& ub1 = layout.addUniformBuffer(...);
+        ...
+
+        // Finalize.
         layout.finalize();
     }
 
-Samplers
---------
+Mesh Layout
+---------------
 
-.. note::
-    Not yet implemented.
+Also required is a reference to a :code:`sol::MeshLayout`. Obviously, the vertex shader must match the vertex input 
+attributes and bindings as specified in the mesh layout.
+
+.. code-block:: cpp
+
+    // Assuming a previously created mesh layout and material.
+    sol::MeshLayout& meshLayout = ...;
+    MyMaterial& material        = ...;
+
+    // Assign mesh layout to material.
+    material.setMeshLayout(meshLayout);
+
+Material Instance
+------------------
+
+The material classes you will be implementing contain just the specification of a material's layout and parameters. 
+Actual data, be it textures or uniform buffers, require implementing one or more classes deriving from 
+:code:`sol::ForwardMaterialInstance`.

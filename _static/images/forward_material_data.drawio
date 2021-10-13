@@ -1,0 +1,70 @@
+<mxfile host="65bd71144e">
+    <diagram id="pIsPSVw4wNhW4OB5O9Dt" name="Page-1">
+        <mxGraphModel dx="1107" dy="501" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="209" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="410" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="188" value="MaterialInstance(S)" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="220" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="189" value="DescriptorPool" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="80" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="208" value="UBufferHash[U]" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="400" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="212" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry y="140" width="610" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="206" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;perimeterSpacing=0;fillColor=none;dashed=1;" parent="212" vertex="1">
+                    <mxGeometry x="420" y="20" width="180" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="207" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;perimeterSpacing=0;fillColor=none;dashed=1;" parent="212" vertex="1">
+                    <mxGeometry x="210" y="20" width="180" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="205" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;perimeterSpacing=0;fillColor=none;dashed=1;" parent="212" vertex="1">
+                    <mxGeometry y="20" width="180" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="198" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="460" y="150" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="197" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="250" y="150" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="196" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="40" y="150" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="185" value="0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;fontSize=12;fontStyle=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="70" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="186" value="UniformBuffer[U]" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="30" y="140" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="190" value="UniformBuffer[U]" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="240" y="140" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="191" value="UniformBuffer[U]" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="450" y="140" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="194" value="..." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;fontSize=12;fontStyle=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="200" width="200" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="195" value="N-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;fontSize=12;fontStyle=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="410" width="200" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="199" value="DescriptorSet" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="30" y="60" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="200" value="DescriptorSet" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="240" y="60" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="201" value="DescriptorSet" style="rounded=0;whiteSpace=wrap;html=1;shadow=1;fontFamily=Lucida Console;" parent="212" vertex="1">
+                    <mxGeometry x="450" y="60" width="120" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
