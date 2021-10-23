@@ -1,0 +1,52 @@
+<mxfile host="65bd71144e">
+    <diagram id="pIsPSVw4wNhW4OB5O9Dt" name="Page-1">
+        <mxGraphModel dx="1302" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="248" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=right;shadow=0;sketch=1;fillStyle=cross-hatch;fillColor=#FF0000;" parent="1" vertex="1">
+                    <mxGeometry x="200" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="249" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=right;shadow=0;sketch=1;fillColor=#00FF00;fillStyle=cross-hatch;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="20" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="250" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=right;shadow=0;sketch=1;fillStyle=cross-hatch;fillColor=#0000FF;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="60" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="251" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=right;shadow=0;sketch=1;fillStyle=cross-hatch;fillColor=#FF8000;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="80" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="243" value="layout(set = 0, binding = 0) ..." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" width="280" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="244" value="layout(set = 0, binding = 1) ..." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="20" width="280" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="257" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="245" target="248">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="258" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="245" target="249">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="245" value="Material Instance 0" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=right;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry y="10" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="246" value="layout(set = 1, binding = 1) ..." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="80" width="280" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="255" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="252" target="250">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="256" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="252" target="251">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="252" value="Material Instance 1" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=right;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry y="70" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="253" value="layout(set = 1, binding = 0) ..." style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Lucida Console;align=left;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="60" width="280" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
