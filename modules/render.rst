@@ -7,6 +7,7 @@ sol.render
     :hidden:
 
     render/render_manager
+    render/common
     render/forward
     render/deferred
 
