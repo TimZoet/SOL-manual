@@ -19,8 +19,8 @@ is important when you are e.g. using double (or triple, or...) buffering to rend
     sol::UniformBufferManager ubManager(memoryManager, 2);
 
 The below diagram displays the relationship between the classes described here. In this image, :code:`B` is the number 
-of duplicate buffers that is allocated, while :code:`N` corresponds to the maximum number of elements each uniform 
-buffer can fit.
+of duplicate buffers that is allocated, while :code:`N` corresponds to the maximum number of slots each uniform buffer 
+can fit.
 
 .. image:: /_static/images/render/uniform_buffer_manager.svg
     :alt: Diagram of the UniformBufferManager.
@@ -30,11 +30,14 @@ Uniform Buffers
 ---------------
 
 When requesting a new uniform buffer, you must specify for which material, set and binding it is used. That way, the 
-manager can look for already existing uniform buffers that are not yet full.
+manager can look for already existing uniform buffers that are not yet full. When storing multiple bindings in a single
+uniform buffer (more on that below) you must provide a unique binding. Using the first binding is the most practical and
+would already suffice.
 
-Also needed are the sharing method, the number of users, and the size required for a single user in bytes. The sharing 
-method determines how buffers are shared between bindings and material instances. A detailed explanation will follow 
-below. Which method is most optimal will of course differ for each use case. You'll have to profile this yourself.
+Also needed are the sharing method, the number of slots, and the size required for a single slot. The sharing method 
+determines how buffers are shared between bindings and material instances. The slot size is the size of the binding in 
+bytes. In the case of multiple bindings it should be the sum of their sizes. A detailed explanation will follow below.
+Which method is most optimal will of course differ for each use case. You'll have to profile this yourself.
 
 As an example, what follows is a (massively simplified) excerpt from what happens in the forward renderer. In this 
 example, we only want to share uniform buffers for the same bindings:
@@ -58,28 +61,31 @@ example, we only want to share uniform buffers for the same bindings:
             ubb->size * ubb->count
         );
 
-        // Get a free spot in the uniform buffer and store it somewhere so that 
+        // Get a free slot in the uniform buffer and store it somewhere so that 
         // the data can be updated when the material instance is modified, 
         // for retrieval during command buffer recording,
         // or deletion once the material instance is no longer in use.
-        const auto [index, offset] = uniformBuffer->getFreeIndex();
-        ... 
+        const auto [slot, offset] = uniformBuffer->getFreeSlot();
+        ...
     }
 
 The first time the above code runs (i.e. the first time a new instance of a particular forward material is created), a 
-new uniform buffer is created, together with however many :code:`sol::VulkanBuffers` are needed for double buffering.
-For the next 3 material instances, :code:`getOrCreate` will return the same uniform buffers.
+new uniform buffer is made, together with however many :code:`sol::VulkanBuffers` are needed for double buffering. For
+the next 3 material instances, :code:`getOrCreate` will return the same uniform buffers.
 
 Writing Data
 ------------
+
+When to write new data is up to the higher layers. The manager or uniform buffers themselves do not know where the data
+comes from and when the memory in the buffers has become stale.
 
 In order to write data to the allocated buffers, there are various methods to :code:`map`, :code:`unmap` and 
 :code:`flush` them. Currently, all buffers are :code:`HOST_VISIBLE` such that they can be mapped. In the future, new 
 options may be introduced to have buffers be only visible to the GPU. This could mainly be useful for infrequently 
 updated data where staging buffers would give better performance.
 
-Sharing Mode
-------------
+Sharing Method
+--------------
 
 In order to explain the various sharing methods a bit better, we will be looking at how uniform buffers are created for 
 forward materials. Consider the definition of a forward material layout below:
@@ -178,7 +184,6 @@ Update Frequency
 
 .. note::
     Not yet implemented.
-
 
 Deallocation
 ------------

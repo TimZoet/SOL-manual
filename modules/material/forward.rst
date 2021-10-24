@@ -6,10 +6,10 @@ Forward Material
     :titlesonly:
     :hidden:
 
-    forward/instance
     forward/uniform_buffers
     forward/samplers
     forward/push_constants
+    forward/instance
 
 A new forward material can be implemented by inheriting from the :code:`sol::ForwardMaterial` class. A forward material
 requires a shader module for both the vertex and fragment stage. A possible implementation of a new material class could
@@ -56,14 +56,17 @@ layout object must be finalized. It cannot be modified after that.
     MyMaterial::MyMaterial(...) : ForwardMaterial(...)
     {
         // Specify material layout.
-        auto& ub0 = layout.addUniformBuffer(...);
+        auto& ub = layout.addUniformBuffer();
         ...
-        auto& ub1 = layout.addUniformBuffer(...);
+        auto& sampler = layout.addSampler();
         ...
 
-        // Finalize.
+        // Finalize material layout.
         layout.finalize();
     }
+
+See the subsections :doc:`forward/uniform_buffers`, :doc:`forward/samplers` and :doc:`forward/push_constants` for 
+detailed information on how to define each type of data.
 
 Mesh Layout
 ---------------
