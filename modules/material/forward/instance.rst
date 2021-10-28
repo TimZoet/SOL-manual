@@ -46,7 +46,7 @@ Uniform Buffers
 
 Regardless of whether or not the material layout actually contains uniform buffer bindings you must implement several
 methods. This is mainly done to prevent you from forgetting to do so when it is needed. If not needed, just return 
-:code:`nullptr`, :code:`false` or anything else. The methods shouldn't be called.
+:code:`nullptr`, :code:`false` or anything else. The methods shouldn't get called.
 
 The :code:`getUniformBufferData` method must of course return a pointer to the actual data that is to be written to the 
 uniform buffers. The pointer should refer to the data for the requested :code:`binding`. The size of the data should be
@@ -67,5 +67,5 @@ Samplers
 Push Constants
 --------------
 
-.. note::
-    Not yet implemented.
+Push constants are not set through material instances, but through separate nodes. See 
+:doc:`../../scenegraph/nodes/forward_push_constant_node`.
