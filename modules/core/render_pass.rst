@@ -1,13 +1,21 @@
 Render Pass
 ===========
 
-The :code:`VulkanRenderPass` manages the lifetime of a :code:`VkRenderPass`.
+The :code:`VulkanRenderPass` manages the lifetime of a :code:`VkRenderPass`. The most important creation parameter is of
+course its layout. For this there is the :code:`VulkanRenderPassLayout`, which is created independently and can be 
+reused. Through the layout all attachments, subpasses and their dependencies are defined.
 
 .. code-block:: cpp
 
+    // Specify attachments, subpasses, dependencies.
+    sol::VulkanRenderPassLayout layout;
+    ...
+    layout.finalize();
+
+    // Create actual render pass.
     sol::VulkanRenderPass::Settings settings;
     settings.device = device;
-    settings.layout = &renderPassLayout;
+    settings.layout = &layout;
     auto renderPass = sol::VulkanRenderPass::create(settings);
 
 Attachments
@@ -98,5 +106,15 @@ source. The remaining parameters are the same:
 Visualization
 -------------
 
-.. note::
-    Not yet implemented.
+For debugging purposes the layout can be visualized as a :code:`dot` graph:
+
+.. code-block:: cpp
+    
+    dot::Graph dotGraph;
+    renderPassLayout.visualize(dotGraph);
+
+    std::ofstream dgf("renderpass.dot");
+    dotGraph.write(dgf);
+
+.. figure:: /_static/images/render_pass_layout.svg
+    :alt: Diagram of a render pass layout.
