@@ -11,6 +11,7 @@ Table of Contents
     :titlesonly:
 
     modules/core
+    modules/error
     modules/material
     modules/memory
     modules/mesh
