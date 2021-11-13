@@ -1,7 +1,7 @@
 Render Pass
 ===========
 
-The :code:`VulkanRenderPass` manages the lifetime of a :code:`VkRenderPass`. The most important creation parameter is of
+The :code:`sol::VulkanRenderPass` manages the lifetime of a :code:`VkRenderPass`. The most important creation parameter is of
 course its layout. For this there is the :code:`VulkanRenderPassLayout`, which is created independently and can be 
 reused. Through the layout all attachments, subpasses and their dependencies are defined.
 
@@ -22,8 +22,8 @@ Attachments
 -----------
 
 New attachments can be added to a layout by calling :code:`createAttachment`. This returns a reference to the newly 
-created attachment, which can then be configured. For a basic rendering pipeline using 8-bit RGB colors and 32-bit 
-depth, something like the following could be done:
+created :code:`sol::VulkanAttachment`, which can then be configured. For a basic rendering pipeline using 8-bit RGB 
+colors and 32-bit depth, something like the following could be done:
 
 .. code-block:: cpp
 
@@ -59,8 +59,8 @@ Subpasses
 ---------
 
 New subpasses can be added to a layout by calling :code:`createSubpass`. This returns a reference to the newly created
-subpass, which can then be configured. Naturally, the order in which subpasses are created is their order in the render
-pass. Continuing the example above:
+:code:`sol::VulkanSubpass`, which can then be configured. Naturally, the order in which subpasses are created is their
+order in the render pass. Continuing the example above:
 
 .. code-block:: cpp
 
