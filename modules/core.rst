@@ -8,6 +8,9 @@ sol.core
 
     core/attachment
     core/buffer
+    core/command_buffer
+    core/command_buffer_list
+    core/command_pool
     core/device_memory
     core/render_pass
     core/subpass

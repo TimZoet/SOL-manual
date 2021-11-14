@@ -1,4 +1,4 @@
-Devicy Memory
+Device Memory
 =============
 
 The :code:`sol::VulkanDeviceMemory` class is used in conjunction with the :code:`sol::VulkanBuffer` class. It manages 
