@@ -1,6 +1,17 @@
 Image2D
 =======
 
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+    :hidden:
+
+    image2d/atlases
+    image2d/compression
+    image2d/mipmaps
+    image2d/resizing
+
+
 The :code:`sol::Image2D` class manages a 2-dimensional, single layer image. The object itself is owned by the 
 :code:`sol::TextureManager`. Internally it holds an instance of :code:`sol::VulkanImage`, which manages the actual 
 Vulkan image resource handle.
@@ -29,26 +40,39 @@ After construction, the image buffer can be updated using similar methods of the
     // Initialize data.
     image0.setData(colorData.data());
 
-Resizing
---------
+Note that the actual buffer is not updated until the :code:`sol::TextureManager` has transferred all staged image data
+to the GPU.
 
-.. note::
-    Not yet implemented.
+Queue Family Ownership
+----------------------
 
-Mipmaps
--------
+Images are created with exclusive ownership (:code:`VK_SHARING_MODE_EXCLUSIVE`). The :code:`sol::TextureManager` takes
+care of ownership transfer. On creation, the image's target queue family is set to the graphics queue, since that is 
+where most images will be used. Should that not be the case, the target family can be modified using the
+:code:`setTargetFamily` method:
 
-.. note::
-    Not yet implemented.
+.. code-block:: cpp
 
-Compression
------------
+    // image1 is going to be used in the compute shader and
+    // therefore needs to be owner by the compute queue.
+    image1.setTargetFamily(memoryManager->getComputeQueue().getFamily());
 
-.. note::
-    Not yet implemented.
+Stage and Access Flags
+----------------------
 
-Atlases
--------
+By default it is assumed that the image will be sampled in the fragment shader. This may not always be true, in which
+case you must modify the stage and access flags of the image. These flags are used during buffer transfer to synchronize
+command execution and memory access. Setting the required values can be done with the :code:`setStageFlags` and 
+:code:`setAccessFlags` methods:
 
-.. note::
-    Not yet implemented.
+.. code-block:: cpp
+
+    // image0 is sampled in both vertex and fragment shader.
+    image0.setStageFlags(VK_PIPELINE_STAGE_VERTEX_SHADER_BIT |
+                         VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT);
+
+    // image1 is written to in the compute shader.
+    image1.setStageFlags(VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
+    image1.setAccessFlags(VK_ACCESS_SHADER_WRITE_BIT);
+
+Obviously, you should limit the flags to what is necessary for optimal performance.
