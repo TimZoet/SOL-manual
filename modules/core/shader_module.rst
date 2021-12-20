@@ -19,3 +19,24 @@ shader source code that is then compiled, or directly from precompiled binary co
     settings.type     = sol::VulkanShaderModule::ShaderType::Fragment;
     settings.binary   = ...; // Load binary from somewhere.
     auto fragShader   = sol::VulkanShaderModule::create(settings);
+
+Compiler
+--------
+
+By default, a new :code:`shaderc::Compiler` is constructed every time you create a new module from source. For
+performance reasons it is best to pass in an already initialized compiler when creating more than one module:
+
+.. code-block:: cpp
+    
+    shaderc::Compiler compiler;
+
+    sol::VulkanShaderModule::Settings settings;
+    settings.device   = device;
+    settings.type     = sol::VulkanShaderModule::ShaderType::Automatic;
+    settings.compiler = &compiler;
+
+    for (const auto& source : sourcesToCompile)
+    {
+        settings.source = source;
+        auto shader = sol::VulkanShaderModule::create(settings);
+    }

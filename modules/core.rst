@@ -23,6 +23,8 @@ sol.core
     core/instance
     core/memory_allocator
     core/physical_device
+    core/queue
+    core/queue_family
     core/render_pass
     core/render_pass_layout
     core/sampler
@@ -30,3 +32,4 @@ sol.core
     core/shader_module
     core/subpass
     core/surface
+    core/swapchain
