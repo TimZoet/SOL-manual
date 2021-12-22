@@ -31,7 +31,7 @@ and adding the various attributes and bindings:
 
 .. code-block:: cpp
 
-    auto& meshLayout = meshManager.createMeshLayout();
+    auto& meshLayout = meshManager.createMeshLayout("basiclayout");
     meshLayout.addAttribute("position", 0, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, pos));
     meshLayout.addAttribute("color", 1, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, color));
     meshLayout.addAttribute("uv", 2, 0, VK_FORMAT_R32G32_SFLOAT, offsetof(Vertex, uv));
@@ -39,6 +39,3 @@ and adding the various attributes and bindings:
     meshLayout.finalize();
 
 The layout must be finalized before it can be used during rendering. After finalization, it can no longer be modified.
-
-.. note::
-    Using more than one binding, or a binding with a non-0 index is not yet supported.
