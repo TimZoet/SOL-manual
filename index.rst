@@ -19,3 +19,4 @@ Table of Contents
     modules/scenegraph
     modules/shadercache
     modules/texture
+    modules/command

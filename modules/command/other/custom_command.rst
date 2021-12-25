@@ -7,6 +7,9 @@ the command is executed:
 
 .. code-block:: cpp
 
-    auto customCmd = std::make_unique<sol::CustomCommand>([]{
+    sol::CommandQueue& commandQueue = ...;
+
+    auto customCommand = commandQueue.createCommand<sol::CustomCommand>();
+    customCommand.setFunction([]{
         ...
     });

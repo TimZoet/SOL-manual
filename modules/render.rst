@@ -6,11 +6,6 @@ sol.render
     :titlesonly:
     :hidden:
 
-    render/render_manager
     render/common
     render/forward
     render/deferred
-
-
-.. image:: /_static/images/material_map.svg
-    :alt: Hello
