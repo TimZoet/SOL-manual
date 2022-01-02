@@ -1,12 +1,12 @@
 Mesh Description
 ================
 
-The :code:`sol::MeshDescription` class has but one purpose: transferring mesh data to the GPU. It currently is very 
-limited in features. It holds one or two persistently mapped, CPU only buffers: one for vertex data and, optionally, 
-one for index data.
+The :code:`sol::MeshDescription` class can be used to create various types of meshes. It holds persistently mapped 
+staging buffers for vertex and index data. You can add any number of vertex buffers using the :code:`addVertexBuffer`
+method and exactly one index buffer using the :code:`addIndexBuffer` method. Each buffer can then be filled with vertex
+and index data using the various :code:`set` methods.
 
-On construction, all buffers and settings are determined. These are fixed during the lifetime of the object. Below a 
-simple example of how to create and fill a description object:
+Below a simple example of how to create and fill a description object with a single vertex buffer and an index buffer:
 
 .. code-block:: cpp
 
@@ -30,25 +30,26 @@ simple example of how to create and fill a description object:
 
     ...
 
-    // Create a description with both vertex and index buffers.
-    auto desc = std::make_unique<MeshDescription>(
-        meshManager,
-        sizeof(Vertex),
-        positions.size(),
-        sizeof(uint32_t),
-        indices.size() * 3
-    );
+    // Create a description with both a vertex and index buffer.
+    auto desc = meshManager->createMeshDescription();
+    desc->addVertexBuffer(sizeof(Vertex), positions.size());
+    desc->addIndexBuffer(sizeof(uint32_t), indices.size() * 3);
 
     // Vertex attributes are in separate vectors and need to be 
     // combined into a single struct and copied per-element.
     for (size_t i = 0; i < positions.size(); i++)
     {
         Vertex v{.pos = positions[i], .color = colors[i], .uv = uvs[i]};
-        desc->setVertexData(i, &v);
+        desc->setVertexData(0, i, &v);
     }
 
     // Vector with indices contains contiguous data and can be copied all at once.
     desc->setIndexData(0, indices.size() * 3, indices.data());
 
-Once the :code:`sol::MeshDescription` is filled, it can be passed to the :code:`sol::MeshManager` to create a 
-:code:`sol::MeshInstance`.
+After the mesh description has been filled, a mesh can be created. Of course the description should be compatible with
+the type of mesh you wish to create. It is for example not possible to create an indexed mesh when there is no index 
+staging buffer:
+
+.. code-block:: cpp
+
+    sol::IndexedMesh& mesh = meshManager->createIndexedMesh(std::move(desc));

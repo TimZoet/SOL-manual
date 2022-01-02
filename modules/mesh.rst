@@ -9,4 +9,4 @@ sol.mesh
     mesh/mesh_manager
     mesh/mesh_layout
     mesh/mesh_description
-    mesh/mesh_instance
+    mesh/meshes
