@@ -2,9 +2,9 @@ Uniform Buffer Manager
 ======================
 
 The :code:`sol::UniformBufferManager` class handles the allocation and sharing of uniform buffers. It is agnostic to
-the type of rendering that is used, be it forward, deferred, or anything else. All built-in renderers make use of this 
-class to optimize their usage of uniform buffers when dealing with many material instances. When implementing your own 
-renderer, you could also make use of this class. For the existing renderers these details are hidden.
+the type of materials that are used, be they forward, deferred, or anything else. The built-in material managers make
+use of this class to optimize their usage of uniform buffers when dealing with many material instances. Should you be 
+implementing your own material manager or something similar, you could also make use of this class.
 
 Construction of a :code:`sol::UniformBufferManager` requires a reference to a :code:`sol::MemoryManager` and the number 
 of separate/duplicate buffers that must be allocated with each :code:`sol::UniformBuffer` instance. This last parameter 
@@ -22,7 +22,7 @@ The below diagram displays the relationship between the classes described here. 
 of duplicate buffers that is allocated, while :code:`N` corresponds to the maximum number of slots each uniform buffer 
 can fit.
 
-.. image:: /_static/images/render/uniform_buffer_manager.svg
+.. image:: /_static/images/material/uniform_buffer_manager.svg
     :alt: Diagram of the UniformBufferManager.
     :align: center
 
@@ -39,8 +39,8 @@ determines how buffers are shared between bindings and material instances. The s
 bytes. In the case of multiple bindings it should be the sum of their sizes. A detailed explanation will follow below.
 Which method is most optimal will of course differ for each use case. You'll have to profile this yourself.
 
-As an example, what follows is a (massively simplified) excerpt from what happens in the forward renderer. In this 
-example, we only want to share uniform buffers for the same bindings:
+As an example, what follows is a (massively simplified) excerpt from what happens in the forward material manager. In
+this example, we only want to share uniform buffers for the same bindings:
 
 .. code-block:: cpp
 
@@ -115,14 +115,14 @@ forward materials. Consider the definition of a forward material layout below:
 This is perhaps better visualized using the next image. On the right a snippet of what the layout definition in the 
 shader code could be. On the left a more visual representation:
 
-.. image:: /_static/images/render/shader_layout.svg
+.. image:: /_static/images/material/shader_layout.svg
     :alt: Visual representation of the layout defined in the previous code snippet.
     :align: center
 
 By default, none of the bindings will be shared. Each time a new material instance is created, separate buffers are 
 allocated. If we create a material instance for both descriptor set 0 and 1, we would get two buffers for each instance:
 
-.. image:: /_static/images/render/shared_none.svg
+.. image:: /_static/images/material/shared_none.svg
     :alt: Diagram of buffer layout when no bindings are shared.
     :align: center
 
@@ -139,7 +139,7 @@ specified in the material layout through the :code:`sharing.method` member:
 Whenever a new material instance is created, a single buffer is allocated. Again visualized for a single instance for 
 descriptor set 0 and 1:
 
-.. image:: /_static/images/render/shared_instance.svg
+.. image:: /_static/images/material/shared_instance.svg
     :alt: Diagram of buffer layout when bindings within the same material instance are shared.
     :align: center
 
@@ -162,7 +162,7 @@ However, for the next three instances, the same buffers would get reused. For se
 buffer for binding 0 is already allocated after two instances, while the binding 1 buffer still fits four instances. 
 Four material instances would therefore result in a total of three buffers:
 
-.. image:: /_static/images/render/shared_binding.svg
+.. image:: /_static/images/material/shared_binding.svg
     :alt: Diagram of buffer layout when the same binding of multiple material instance is shared.
     :align: center
 
@@ -170,7 +170,7 @@ Finally, multiple bindings of multiple material instances can be shared by chang
 :code:`InstanceAndBinding`. If the :code:`sharing.count` is different between the bindings, the count of the first 
 binding of the set is used. In this example, set 0 will use a count of 4, and set 1 a count of 2:
 
-.. image:: /_static/images/render/shared_both.svg
+.. image:: /_static/images/material/shared_both.svg
     :alt: Diagram of buffer layout when bindings of multiple material instances are shared.
     :align: center
 

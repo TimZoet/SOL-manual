@@ -7,7 +7,7 @@ class when recording command buffers. The below diagram shows the relation betwe
 
 .. note::
 
-    TODO: Create diagram.
+    TODO: Create diagram. Recall (somewhat outdated) forward_material_data.svg.
 
 To construct a new manager a fully initialized :code:`sol::MemoryManager` is needed, as this class provides e.g. methods
 for uniform buffer allocation:

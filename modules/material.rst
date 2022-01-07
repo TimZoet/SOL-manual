@@ -6,6 +6,7 @@ sol.material
     :titlesonly:
     :hidden:
 
+    material/common
     material/forward
     material/deferred
     material/post_processing

@@ -98,8 +98,7 @@ cases this will be very inefficient. To change this behaviour, you can modify th
     ub2.sharing.method = sol::ForwardMaterialLayout::SharingMethod::InstanceAndBinding;
     ub0.sharing.count  = 16;
 
-Further details can be found on these two pages: :doc:`../../render/forward/forward_material_data` and 
-:doc:`../../render/common/uniform_buffer_manager`.
+Further details can be found on these two pages: :doc:`../manager` and :doc:`../../common/uniform_buffer_manager`.
 
 Update Frequency
 ----------------
