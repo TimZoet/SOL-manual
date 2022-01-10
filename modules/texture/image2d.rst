@@ -25,23 +25,43 @@ dimensions of an image must be specified on construction:
     // Create an image with uninitialized data.
     auto& image0 = texManager.createImage2D(VK_FORMAT_R8G8B8A8_SRGB, {512, 512});
 
-    // Create an image filled with all red values.
+    // Create an image filled with all red values. Automatically creates and fills a staging buffer.
     std::array<uint8_t, 4> rgba = {255, 0, 0, 255};
     auto& image1 = texManager.createImage2DFill(VK_FORMAT_R8G8B8A8_SRGB, {256, 256}, rgba.data());
 
-After construction, the image buffer can be updated using similar methods of the image object:
+    // Invoke the TextureManager to actually transfer the staging buffers.
+    ...
+
+Note that the actual buffer of either image is not updated until the :code:`sol::TextureManager` has transferred all
+staged image data to the GPU.
+
+Staging Buffers
+---------------
+
+You can create one or more staging buffers to update (parts of) the image. When using multiple staging buffers, they
+should not overlap.
+
+Staging buffers contain persistenly mapped memory. With a staging buffer created, you can repeatedly call the various
+:code:`setData` and :code:`fill` methods to copy data to a particular staging buffer such that it can be transferred to
+the actual image buffer by the manager:
 
 .. code-block:: cpp
 
-    // Fill vector with enough data to update entire image.
-    std::vector<uint8_t> colorData;
+    // Assuming vector with enough data to update entire image.
+    std::vector<uint8_t> colorData = {...};
+
+    // Create staging buffer covering whole image and fill it.
+    image0.createStagingBuffer();
+    image0.setData(colorData.data(), 0);
+
+    // Assuming someArray that contains non-overlapping chunks of data,
+    // create and fill a distinct staging buffer for each chunk.
+    for (auto [data, x, y, width, height] : someArray)
+        const auto bufferIdx = image1.createStagingBuffer({x, y}, {width, height});
+        image1.setData(data, {x, y}, {width, height}, bufferIdx);
+
+    // Invoke the TextureManager to actually transfer the staging buffers.
     ...
-
-    // Initialize data.
-    image0.setData(colorData.data());
-
-Note that the actual buffer is not updated until the :code:`sol::TextureManager` has transferred all staged image data
-to the GPU.
 
 Queue Family Ownership
 ----------------------
@@ -56,6 +76,10 @@ where most images will be used. Should that not be the case, the target family c
     // image1 is going to be used in the compute shader and
     // therefore needs to be owner by the compute queue.
     image1.setTargetFamily(memoryManager->getComputeQueue().getFamily());
+
+.. note::
+
+    The :code:`sol::TextureManager` does not yet support transferring just ownership without also copying data.
 
 Stage and Access Flags
 ----------------------
