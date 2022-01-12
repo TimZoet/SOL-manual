@@ -29,9 +29,11 @@ Given a mesh object that implements the interface, it is possible to draw it usi
     // Skip invalid meshes (vertexCount or indexCount 0, no buffers set, etc...)
     if (!mesh.isValid()) return;
 
-    // Bind the list of vertex buffers.
-    const auto vertexBuffers       = mesh.getVertexBufferHandles();
-    const auto vertexBufferOffsets = mesh.getVertexBufferOffsets();
+    // Bind the vertex buffers.
+    std::vector<VkBuffer> vertexBuffers;
+    std::vector<size_t>   vertexBufferOffsets;
+    mesh.getVertexBufferHandles(vertexBuffers);
+    mesh.getVertexBufferOffsets(vertexBufferOffsets);
     vkCmdBindVertexBuffers(
         cmdBuffer,
         0,
@@ -71,6 +73,9 @@ cannot be drawn, for example because it has no vertex buffer. None of the getter
 
 :code:`isIndexed` should return whether the mesh has an index buffer. Again, none of the index buffer related methods
 are called if :code:`false` is returned.
+
+The :code:`getVertexBufferHandles` and :code:`getVertexBufferOffsets` append to a :code:`std::vector`. This is mainly to
+reduce the number of small allocations that would be made otherwise.
 
 Queue Family Ownership
 ----------------------
