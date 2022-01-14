@@ -92,18 +92,19 @@ where most meshes will be used. Should that not be the case, the target family c
     sol::IMesh& mesh = ...;
     mesh.setTargetFamily(memoryManager->getComputeQueue().getFamily());
 
-Access Flags
+Stage and Access Flags
 ----------------------
 
 By default it is assumed that vertex and index buffers are read only as vertex attributes and indices (i.e., the access
 flags are VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT and VK_ACCESS_INDEX_READ_BIT, respectively). This may not always be true,
-in which case you must modify the access flags of the buffers. These flags are used during buffer transfer to
+in which case you must modify the stage and access flags of the buffers. These flags are used during buffer transfer to
 synchronize command execution and memory access. Setting the required values can be done with the 
 :code:`set(Vertex|Index)AccessFlags` methods provided by the deriving classes:
 
 .. code-block:: cpp
 
     sol::FlatMesh& mesh = ...;
+    mesh.setStageFlags(VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
     mesh.setVertexAccessFlags(VK_ACCESS_SHADER_READ_BIT);
 
 Obviously, you should limit the flags to what is necessary for optimal performance.
