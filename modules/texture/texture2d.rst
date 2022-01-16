@@ -38,7 +38,7 @@ It is also possible to provide the create method explicitly with a :code:`sol::V
         VK_COMPONENT_SWIZZLE_A
     };
     auto imgView = sol::VulkanImageView::create(settings);
-    auto&   tex2 = texManager.createTexture2D(image1, std::move(imgView));
+    auto&   tex2 = texManager.createTexture2D(image1, std::move(imgView), nullptr);
 
 Image Updates
 -------------
