@@ -1,13 +1,6 @@
 Texture Manager
 ===============
 
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :hidden:
-
-    manager/images
-
 The :code:`sol::TextureManager` class manages collections of images and textures. It provides methods to, among other
 things, create new image and texture objects. The below diagram shows the relation between objects.
 
@@ -24,4 +17,4 @@ command buffers and queues:
 
 One thing you'll notice is that the manager does not support loading image files from disk (or memory, for that matter).
 Images can only be created by providing the actual data to be copied to the image buffers. This is by design. There are
-many image loading libraries there with support for a large variety of image formats.
+many image loading libraries out there with support for a large variety of image formats.

@@ -30,6 +30,7 @@ It is also possible to provide the create method explicitly with a :code:`sol::V
     settings.device     = ...;
     settings.image      = &image1.getImage();
     settings.format     = image1.getFormat();
+    settings.aspect     = image1.getAspectFlags();
     settings.components = VkComponentMapping{
         VK_COMPONENT_SWIZZLE_B,
         VK_COMPONENT_SWIZZLE_G,

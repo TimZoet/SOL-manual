@@ -7,5 +7,6 @@ sol.texture
     :hidden:
 
     texture/texture_manager
+    texture/image_transfer
     texture/image2d
     texture/texture2d
