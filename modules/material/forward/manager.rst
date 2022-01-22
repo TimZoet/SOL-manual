@@ -1,9 +1,9 @@
 Forward Material Manager
 ========================
 
-The :code:`sol::ForwardMaterialManager` class manages collections of forward material instances and graphics pipelines
-created from forward materials. It also keeps track of uniform buffers and descriptor sets. Renderers make use of this
-class when recording command buffers. The below diagram shows the relation between objects.
+The :code:`sol::ForwardMaterialManager` class manages collections of forward materials, material instances and graphics
+pipelines. It also keeps track of uniform buffers and descriptor sets. Renderers make use of this class when recording
+command buffers. The below diagram shows the relation between objects.
 
 .. note::
 
@@ -17,34 +17,46 @@ for uniform buffer allocation:
     auto memoryManager = std::make_unique<sol::MemoryManager>(...);
     auto fwdMtlManager = std::make_unique<sol::ForwardMaterialManager>(*memoryManager);
 
-Creating Material Instances
----------------------------
+Materials
+---------
 
-To create a new material instance, you need at least a class deriving from :code:`sol::ForwardMaterial` (see 
-:doc:`material`) and a matching class deriving from :code:`sol::ForwardMaterialInstance` (see :doc:`instance`). With a 
-material object as the first parameter you can then call :code:`createMaterial<YourMaterialInstanceClass>` to create a
-material instance of the given type. Any additional parameters are forwarded to the constructor of the instance class:
+To create a new material, you need a class deriving from :code:`sol::ForwardMaterial`. You can then call the
+:code:`addMaterial` method of the manager:
 
 .. code-block:: cpp
 
-    // Assuming some ForwardMaterial class and an object of that type.
+    // Assuming some ForwardMaterial class.
     class MyMaterial : public sol::ForwardMaterial {...};
-    auto myMtl = std::make_unique<MyMaterial>(...);
+    
+    // Create and add the material to the manager.
+    MyMaterial& myMtl = fwdMtlManager->addMaterial(std::make_unique<MyMaterial>(...));
+
+See :doc:`material` for details on how to implement a new material class.
+
+Material Instances
+------------------
+
+To create a new material instance, you need a class deriving from :code:`sol::ForwardMaterialInstance`. Assuming you
+previously added a material to a manager, it is then possible to call the :code:`addMaterialInstance` method of that
+same manager with a reference to the material:
+
+.. code-block:: cpp
 
     // Assuming a ForwardMaterialInstance class for the above ForwardMaterial.
     class MyMaterialInstance : public sol::ForwardMaterialInstance {...};
 
-    // Create a new material instance of MyMaterialInstance.
-    // Requires a reference to the material object and whatever parameters the constructor takes.
-    auto& myMtlInstance = fwdMtlManager->createMaterial<MyMaterialInstance>(*myMtl, ...);
+    // Create and add the material instance to the manager.
+    auto& myMtlInstance = fwdMtlManager->addMaterialInstance(
+        myMtl,
+        std::make_unique<MyMaterialInstance>(...)
+    );
 
-Note that while the manager does own the material instance, it does not take ownership of the material object. It is
-your responsibility to make sure that the material objects exists as long as the manager exists.
+See :doc:`instance` for details on how to implement a new material instance class.
 
-Creating Pipelines
-------------------
+Pipelines
+---------
 
-After creating material instances, but before rendering where inevitably one or more pipelines need to be bound, these 
+After creating material (instances), but before rendering where inevitably one or more pipelines need to be bound, these 
 pipelines must be created. For performance reasons, different instances of the same forward material can and should
 share their pipeline as often as possible. There are 3 objects that influence pipeline creation:
 

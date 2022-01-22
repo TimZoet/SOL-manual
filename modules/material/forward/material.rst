@@ -18,25 +18,18 @@ more or less look like this:
 
     class MyMaterial : public sol::ForwardMaterial
     {
+    public:
         MyMaterial(sol::VulkanShaderModuleSharedPtr vtx,
-                   sol::VulkanShaderModuleSharedPtr frag) : 
-                   ForwardMaterial("MyMaterial", 
-                                   std::move(vtx), 
+                   sol::VulkanShaderModuleSharedPtr frag,
+                   sol::MeshLayout& mesh) : 
+                   ForwardMaterial(std::move(vtx), 
                                    std::move(frag))
         {
             // Specify material layout.
             ...
-        }
-    
-    public:
-        static std::unique_ptr<MyMaterial> create(...)
-        {
-            // Retrieve vertex and fragment shader module from somewhere.
-            sol::VulkanShaderModuleSharedPtr vtx = ...;
-            sol::VulkanShaderModuleSharedPtr frag = ...;
 
-            // Create material.
-            return std::make_unique<MyMaterial>(std::move(vtx), std::move(frag));
+            // Assign mesh layout.
+            setMeshLayout(mesh);
         }
     };
 
@@ -56,12 +49,16 @@ layout object must be finalized. It cannot be modified after that.
     MyMaterial::MyMaterial(...) : ForwardMaterial(...)
     {
         // Specify material layout.
-        auto& ub = layout.addUniformBuffer();
+        auto& ub   = layout.addUniformBuffer();
+        ub.set     = 0;
+        ub.binding = 0;
         ...
-        auto& sampler = layout.addSampler();
+        auto& sampler   = layout.addSampler();
+        sampler.set     = 0;
+        sampler.binding = 1;
         ...
 
-        // Finalize material layout.
+        // Finalize material layout. Can no longer be modified.
         layout.finalize();
     }
 
