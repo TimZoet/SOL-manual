@@ -7,3 +7,7 @@ sol.scenegraph
     :hidden:
 
     scenegraph/scenegraph
+    scenegraph/node
+    scenegraph/drawable
+    scenegraph/forward
+    scenegraph/deferred

@@ -12,8 +12,8 @@ material that is bound by the nearest ancestor material node.
     sol::ForwardMaterialInstance& mtl = ...;
     sol::Scenegraph        scenegraph = ...;
     auto&                        root = scenegraph.getRootNode();
-    auto&                materialNode = root.createChild<sol::ForwardMaterialNode>(mtl);
+    auto&                materialNode = root.addChild(std::make_unique<sol::ForwardMaterialNode>(mtl));
 
     // Both meshes will be rendered with the material from the node created above.
-    materialNode.createChild<sol::MeshNode>(mesh0);
-    materialNode.createChild<sol::MeshNode>(mesh1);
+    materialNode.addChild(std::make_unique<sol::MeshNode>(mesh0));
+    materialNode.addChild(std::make_unique<sol::MeshNode>(mesh1));
