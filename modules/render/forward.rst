@@ -6,5 +6,7 @@ Forward Renderer
     :titlesonly:
     :hidden:
 
-    forward/forward_renderer
+    forward/forward_render_data
     forward/forward_traverser
+    forward/forward_renderer
+
