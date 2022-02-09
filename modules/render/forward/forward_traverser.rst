@@ -1,34 +1,44 @@
 Forward Traverser
 =================
 
-The :code:`sol::ForwardTraverser` class transforms the nodes in a :code:`sol::Scenegraph` into a structure that can be
-passed on to a :code:`sol::ForwardRenderer`. It will ignore any nodes it does not support.
+The :code:`sol::ForwardTraverser` class transforms the nodes and data in a :code:`sol::Scenegraph` into a
+:code:`sol::ForwardRenderData` structure, ready to be passed to a :code:`sol::ForwardRenderer`.
 
 .. code-block:: cpp
 
-    // Setup scenegraph.
+    // Assuming some other already initialized objects.
+    ...
     auto scenegraph = std::make_unique<sol::Scenegraph>();
+    auto renderData = std::make_unique<sol::ForwardRenderData>();
+    auto   renderer = std::make_unique<sol::ForwardRenderer>
     ...
 
     // Setup traverser.
     auto traverser = std::make_unique<sol::ForwardTraverser>();
     ...
 
+    // Render loop.
     while (rendering)
     {
-        // Do other stuff as part of your render loop.
+        // Do other stuff.
         ...
 
         // Clear data from previous frame and traverse again.
-        traverser->clear();
-        traverser->traverse(*scenegraph);
+        renderData->clear();
+        traverser->traverse(*scenegraph, *renderData);
 
-        // Pass traverser to your renderer.
+        // Pass data to the renderer.
         ...
     }
 
-Configuration
--------------
+Supported Nodes
+---------------
+
+.. note::
+    Not yet implemented.
+
+Traversal Algorithm
+-------------------
 
 .. note::
     Not yet implemented.

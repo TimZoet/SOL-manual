@@ -6,4 +6,5 @@ Common Render Classes
     :titlesonly:
     :hidden:
 
+    common/traverser
     common/render_settings

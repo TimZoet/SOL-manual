@@ -30,11 +30,15 @@ actually has many benefits for ease of use, extensibility, performance and more:
 
 * A scenegraph can be invalid. For example, a mesh node might not be preceded by any materials. If the render data is
   guaranteed to always be valid, the render code can be simplified because it does not need to do any error checking.
-* Implementing a new renderer does not require reimplementing traversal if the existing render data classes fit your
-  needs.
-* Implementing a new traverser that generates the render data in an already supported format means you can immediately
-  render it.
+* It is generally beneficial to be done with the scenegraph as quickly as possible. Oftentimes you will have a
+  simulation or game loop that writes to the scenegraph, while the render loop only reads. These two loops therefore
+  require synchronization. By quickly extracting the necessary data from the scenegraph, both loops can continue much
+  faster.
 * With a static scenegraph, traversal only needs to be done once. Linked data (e.g. materials) can still be updated, but
   if this does not affect the scenegraph the render data can be reused.
 * The render data can be structured more optimally compared to the nodes in a scenegraph. Additionally, it can be
   modified or optimized for specific use cases.
+* Implementing a new renderer does not require reimplementing traversal if the existing render data classes fit your
+  needs.
+* Implementing a new traverser that generates the render data in an already supported format means you can immediately
+  render it.
