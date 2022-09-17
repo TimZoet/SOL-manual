@@ -24,8 +24,9 @@ using :code:`vkCmdBindIndexBuffer` and :code:`vkCmdBindVertexBuffers`.
 The material defines a number of descriptor sets in its layout. For each set, a material instance is needed. The
 drawable has a single offset into the :code:`materialInstances` list of the render data. Starting at this offset,
 there is a reference to a :code:`sol::ForwardMaterialInstance` for each descriptor set. These material instances are
-guaranteed to be sorted by set index. They can be used to to obtain the parameters of :code:`vkCmdBindDescriptorSets`.
+guaranteed to be sorted by set index. They can be used to obtain the parameters of :code:`vkCmdBindDescriptorSets`.
 
-Similar to the descriptor sets, a material layout also defines a list of push constant ranges. The drawable again has a
-single offset, this time into the :code:`pushConstantoffsets` list of the render data. For each push constant range in
-the material layout, there is an offset (in bytes) into the :code:`pushConstantData` data array.
+To handle push constants, a drawable points to a number of ranges in the render data's :code:`pushConstantRanges` list.
+Each range describes its offset, size and stages, all of which are to be passed directly to :code:`vkCmdPushConstants`.
+The range also has an offset into the :code:`pushConstantData` data array, where the raw data that needs to be pushed is
+stored.
