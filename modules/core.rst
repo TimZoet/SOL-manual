@@ -8,9 +8,11 @@ sol.core
 
     core/attachment
     core/buffer
+    core/bottom_level_acceleration_structure
     core/command_buffer
     core/command_buffer_list
     core/command_pool
+    core/compute_pipeline
     core/descriptor_pool
     core/descriptor_set_layout
     core/device
@@ -25,14 +27,17 @@ sol.core
     core/physical_device
     core/queue
     core/queue_family
+    core/ray_tracing_pipeline
     core/render_pass
     core/render_pass_layout
     core/sampler
     core/semaphore
+    core/shader_binding_table
     core/shader_module
     core/subpass
     core/surface
     core/swapchain
+    core/top_level_acceleration_structure
 
 The :code:`sol.core` module contains many classes to manage various Vulkan objects. You can look at it as a slightly
 more convenient C++ layer built on top of the Vulkan C API. Most classes (with the exception of some utilities) wrap a
@@ -119,3 +124,12 @@ sure that e.g. any resources allocated on a particular Vulkan device are destroy
     // Device will go out of scope before image.
     ~device;
     ~image;
+
+Caching Settings
+----------------
+
+By default, each object will keep around the settings with which it was created, and allows retrieving it through the
+:code:`getSettings` method. You can use this to inspect an object, or perhaps for easily cloning them. However, storing
+all these settings instances obviously results in a considerable amount of overhead. To that end, there is the option
+to disable this, at which point all objects will only store the minimal set of required properties. Refer to the build
+instructions for more information.

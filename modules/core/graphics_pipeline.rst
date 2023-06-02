@@ -24,4 +24,9 @@ The :code:`sol::VulkanGraphicsPipeline` class manages the lifetime of a :code:`V
     auto graphicsPipeline = sol::VulkanGraphicsPipeline::create(setting);
 
 .. note::
+
     Many features for pipeline creation are not yet exposed.
+
+.. note::
+
+    It is not yet possible to specify the name of the entry point for each stage.
