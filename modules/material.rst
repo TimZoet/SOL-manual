@@ -8,8 +8,9 @@ sol.material
 
     material/common
     material/forward
-    material/deferred
-    material/post_processing
+    material/compute
+    material/graphics
+    material/ray_tracing
 
-.. figure:: /_static/images/material_class_diagram.svg
+.. figure:: /_static/images/material/material_class_diagram.svg
     :alt: Diagram of the material class hierarchy.
