@@ -7,3 +7,5 @@ Graphics Materials
     :hidden:
 
     graphics/material_layout
+    graphics/material
+    graphics/material_instance

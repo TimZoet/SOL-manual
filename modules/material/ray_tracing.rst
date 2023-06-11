@@ -7,3 +7,5 @@ Ray Tracing Materials
     :hidden:
 
     ray_tracing/material_layout
+    ray_tracing/material
+    ray_tracing/material_instance

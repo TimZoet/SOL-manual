@@ -7,3 +7,5 @@ Compute Materials
     :hidden:
 
     compute/material_layout
+    compute/material
+    compute/material_instance
