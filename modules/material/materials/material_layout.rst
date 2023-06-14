@@ -18,5 +18,5 @@ Creation of the descriptor set layouts and push constant ranges is done in the :
     layout.finalize(desc);
 
 After finalization, a large number of methods can be used to inspect the material layout and retrieve the created Vulkan
-objects. Wih that information, pipelines and descriptor sets can be constructed.
+objects. With that information, pipelines and descriptor sets can be constructed.
 

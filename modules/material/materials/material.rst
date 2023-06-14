@@ -127,7 +127,8 @@ Layout Description
 Setting up the material layout description is going to be almost identical for all our materials. All of them will have
 a view and projection matrix, and most of them are going to have a transformation matrix per object that is being drawn.
 We can again extract setting up the shared code, and then add some specific code in the class. To make a follow-up
-example a bit shorter, we'll be putting the code in a separate, public method in advance:
+example a bit shorter, we'll be putting the specific code in a separate, public method called
+:code:`setupDescriptorSet` in advance:
 
 .. code-block:: cpp
 
@@ -184,7 +185,8 @@ thing we do have to add now is a :code:`sol::VulkanDevice` parameter. The materi
 
 .. code-block:: cpp
 
-    StripedMaterial::StripedMaterial(sol::VulkanDevice& device, ...) : GraphicsMaterial(device)
+    StripedMaterial::StripedMaterial(sol::VulkanDevice& device, ...) 
+        : GraphicsMaterial(device)
     {
         ...
     }
