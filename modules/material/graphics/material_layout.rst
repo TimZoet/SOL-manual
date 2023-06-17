@@ -51,7 +51,6 @@ Some graphics pipeline state can be made dynamic. In that case, the value stored
 mode) is ignored and instead material instances will be allowed to specify dynamic state values. To enable any kind of
 dynamic state, the :code:`enableDynamicState` method can be called with the matching enum value:
 
-
 .. code-block:: cpp
 
     layout.enableDynamicState<VK_DYNAMIC_STATE_VIEWPORT>(true);

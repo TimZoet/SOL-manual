@@ -1,9 +1,8 @@
 Graphics Material
 =================
 
-.. note::
-
-    TODO.
+The :code:`sol::GraphicsMaterial` class inherits from the :code:`sol::Material` class. It can be used to define and
+create graphics pipelines.
 
 Shader Modules
 --------------

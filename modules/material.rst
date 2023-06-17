@@ -6,7 +6,6 @@ sol.material
     :titlesonly:
     :hidden:
 
-    material/common
     material/materials
     material/compute
     material/graphics

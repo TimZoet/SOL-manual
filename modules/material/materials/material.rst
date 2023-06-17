@@ -230,11 +230,10 @@ publicly accessible. The full implementation will now more or less look like thi
     auto desc = createDefaultMaterialLayoutDescription();
     mtl->setupDescriptorSet(desc);
     setDefaultGraphicsPipelineStates(mtl->getGraphicsLayout());
-    mtl->getGraphicsLayout().finalize(std::move(desc));
     mtl->setMeshLayout(getMeshLayoutFromSomewhere());
+    mtl->getGraphicsLayout().finalize(std::move(desc));
     mtl->setVertexShader(loadShader("default.vert.spv"));
     mtl->setFragmentShader(loadShader("default.frag.spv"));
-
 
 Conclusion
 ----------

@@ -48,3 +48,7 @@ The next step is finalizing some material layout with the description (note that
 
 Unless we :code:`std::move` the description into the layout, it is still valid and unmodified afterwards. We can modify
 it, use it to finalize another layout (even a non-ray tracing layout), etc.
+
+.. note::
+
+    TODO: Push constants.
