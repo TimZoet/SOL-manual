@@ -6,10 +6,11 @@ sol.material
     :titlesonly:
     :hidden:
 
-    material/common
-    material/forward
-    material/deferred
-    material/post_processing
+    material/materials
+    material/compute
+    material/graphics
+    material/ray_tracing
+    material/managers
 
-.. figure:: /_static/images/material_class_diagram.svg
-    :alt: Diagram of the material class hierarchy.
+The :code:`sol.material` module contains classes for defining materials. Additionally, there are several classes that
+define interfaces for managing sets of materials and material instances.

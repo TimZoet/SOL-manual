@@ -1,0 +1,5 @@
+Compute Material Instance
+=========================
+
+The :code:`sol::ComputeMaterialInstance` class inherits from :code:`sol::MaterialInstance`. Currently, it adds no
+additional data or behaviour to its base class.

@@ -8,3 +8,4 @@ Common Render Classes
 
     common/traverser
     common/render_settings
+    common/uniform_buffer_manager
