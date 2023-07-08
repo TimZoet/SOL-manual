@@ -38,26 +38,28 @@ the features that must be enabled when creating a logical device as follows:
 
 .. code-block:: cpp
 
-    // Setup feature chain.
-    MyFeatures enabledFeatures;
-    enabledFeatures.features2.pNext                             = &enabledFeatures.features11;
-    enabledFeatures.features11.pNext                            = &enabledFeatures.features12;
-    enabledFeatures.features12.bufferDeviceAddress              = VK_TRUE;
-    enabledFeatures.features12.descriptorIndexing               = VK_TRUE;
-    enabledFeatures.features12.pNext                            = &enabledFeatures.features13;
-    enabledFeatures.features13.synchronization2                 = VK_TRUE;
-    enabledFeatures.features13.pNext                            = &enabledFeatures.accelerationStructure;
-    enabledFeatures.accelerationStructure.accelerationStructure = VK_TRUE;
-    enabledFeatures.accelerationStructure.pNext                 = &enabledFeatures.rayQuery;
-    enabledFeatures.rayQuery.rayQuery                           = VK_TRUE;
-    enabledFeatures.rayQuery.pNext                              = &enabledFeatures.rayTracingPipeline;
-    enabledFeatures.rayTracingPipeline.rayTracingPipeline       = VK_TRUE;
-    enabledFeatures.rayTracingPipeline.pNext                    = nullptr;
+    // Setup feature chain, matching that of the physical device.
+    auto enabledFeatures = std::make_unique<sol::VulkanPhysicalDeviceFeatures2<
+        sol::VulkanPhysicalDeviceVulkan11Features,
+        sol::VulkanPhysicalDeviceVulkan12Features,
+        sol::VulkanPhysicalDeviceVulkan13Features,
+        sol::VulkanPhysicalDeviceAccelerationStructureFeaturesKHR,
+        sol::VulkanPhysicalDeviceRayQueryFeaturesKHR,
+        sol::VulkanPhysicalDeviceRayTracingPipelineFeaturesKHR
+    >>();
 
-    // Specify a struct with the enabled features.
+    // Set all features that must be enabled.
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceVulkan12Features>()->bufferDeviceAddress                   = VK_TRUE;
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceVulkan12Features>()->descriptorIndexing                    = VK_TRUE;
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceVulkan13Features>()->dynamicRendering                      = VK_TRUE;
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceVulkan13Features>()->synchronization2                      = VK_TRUE;
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceAccelerationStructureFeaturesKHR>()->accelerationStructure = VK_TRUE;
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceRayQueryFeaturesKHR>()->rayQuery                           = VK_TRUE;
+    enabledFeatures->getAs<sol::VulkanPhysicalDeviceRayTracingPipelineFeaturesKHR>()->rayTracingPipeline       = VK_TRUE;
+
     sol::VulkanDevice::Settings settings;
     settings...             = ...;
-    settings.features       = &enabledFeatures.features2;
+    settings.features       = enabledFeatures.get();
     
     auto device = sol::VulkanDevice::create(settings)
 
