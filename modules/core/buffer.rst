@@ -36,14 +36,14 @@ allocator:
 .. code-block:: cpp
     
     sol::VulkanBuffer::Settings settings;
-    settings.device      = device
-    settings.size        = vertexCount * sizeof(Vertex);
-    settings.bufferUsage = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
-    settings.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-    settings.allocator   = allocator;
-    settings.memoryUsage = VMA_MEMORY_USAGE_GPU_ONLY;
-    settings.flags       = 0;
-    auto buffer          = VulkanBuffer::create(settings);
+    settings.device          = device
+    settings.size            = vertexCount * sizeof(Vertex);
+    settings.bufferUsage     = VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
+    settings.sharingMode     = VK_SHARING_MODE_EXCLUSIVE;
+    settings.allocator       = allocator;
+    settings.vma.memoryUsage = VMA_MEMORY_USAGE_GPU_ONLY;
+    settings.vma.flags       = 0;
+    auto buffer              = VulkanBuffer::create(settings);
 
 Mapping
 -------
