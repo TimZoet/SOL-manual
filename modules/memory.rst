@@ -8,5 +8,6 @@ sol.memory
 
     memory/memory_manager
     memory/memory_pools
+    memory/transfer_manager
 
 The :code:`sol.memory` module contains classes for allocating and managing memory and buffers.
