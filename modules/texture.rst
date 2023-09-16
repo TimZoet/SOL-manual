@@ -10,6 +10,10 @@ sol.texture
     texture/image_transfer
     texture/image2d
     texture/texture2d
+    texture/texture_collection
+    texture/images
+    texture/samplers
+    texture/textures
 
 The :code:`sol.texture` module contains functionality to manage image and texture resources. At the center lies the
 :code:`sol::TextureManager`, which defines the main interface to image and texture creation.
