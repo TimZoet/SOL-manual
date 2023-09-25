@@ -1,5 +1,6 @@
-Atlases
+Image3D
 =======
 
-.. note::
+.. note:: 
+
     Not yet implemented.

@@ -1,5 +1,6 @@
-Mipmaps
+Image1D
 =======
 
-.. note::
+.. note:: 
+
     Not yet implemented.
