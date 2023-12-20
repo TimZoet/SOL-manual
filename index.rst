@@ -12,6 +12,7 @@ Table of Contents
 
     modules/core
     modules/error
+    modules/descriptor
     modules/material
     modules/memory
     modules/mesh
