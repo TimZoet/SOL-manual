@@ -20,11 +20,17 @@ sol.core
     core/fence
     core/framebuffer
     core/graphics_pipeline
+    core/graphics_pipeline2
+    core/graphics_pipeline_fragment
+    core/graphics_pipeline_fragment_output
+    core/graphics_pipeline_pre_rasterization
+    core/graphics_pipeline_vertex_input
     core/image
     core/image_view
     core/instance
     core/memory_allocator
     core/physical_device
+    core/pipeline_layout
     core/queue
     core/queue_family
     core/ray_tracing_pipeline
