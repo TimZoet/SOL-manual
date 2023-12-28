@@ -31,7 +31,7 @@ described on its own page. When committed, a single transaction records commands
 buffers/images. Finally, the :code:`AfterCopy` barriers. Once recorded, all command buffers are submitted.
 
 .. code-block:: cpp
-    :caption: 
+    :caption: The lifetime of a transaction.
 
     sol::TransactionManager& manager = ...;
 

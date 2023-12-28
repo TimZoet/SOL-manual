@@ -6,10 +6,5 @@ Graphics Materials
     :titlesonly:
     :hidden:
 
-    graphics/material_layout
     graphics/material
     graphics/material_instance
-
-.. note::
-
-    TODO.
