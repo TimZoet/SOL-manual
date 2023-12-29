@@ -36,8 +36,7 @@ mipmaps, etc.
     collection.destroyImage(imageC);
 
 Each class provides a simple interface for uploading data to it, retrieving its data and placing barriers as part of a
-:doc:`/modules/memory/transfer/buffer_transaction`. There are some guidelines you must follow that apply to all types of
-images:
+:doc:`/modules/memory/transaction`. There are some guidelines you must follow that apply to all types of images:
 
 Firstly, when performing multiple operations on the same image in different transactions, you must commit the
 transactions in the order in which you staged the operations. Otherwise, commands are recorded with the wrong image

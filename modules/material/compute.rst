@@ -6,10 +6,5 @@ Compute Materials
     :titlesonly:
     :hidden:
 
-    compute/material_layout
     compute/material
     compute/material_instance
-
-.. note::
-
-    TODO.
