@@ -17,23 +17,29 @@ The :code:`sol::Image...` classes manage various types of images: color and dept
 mipmaps, etc.
 
 .. code-block:: cpp
-    :caption: Creating and destroying some images.
+    :caption: Creating some images.
 
-    sol::TextureCollection& collection = ...;
+    sol::MemoryManager& manager = ...;
 
     // Create a number of images.
-    auto& imageA = collection.createImage2D({1024, 1024}, ...);
-    auto& imageB = collection.createImage3D({1024, 512}, ...);
-    auto& imageC = collection.createImage2DArray({1024, 512}, ...);
+    auto imageA = sol::Image2D::create(sol::Image2D::Settings{
+        .memoryManager = manager,
+        .size = {1024u, 1024u},
+        ...
+    });
+    auto imageB = sol::Image3D::create(sol::Image3D::Settings{
+        .memoryManager = manager,
+        .size = {1024u, 1024u},
+        ...
+    });
+    auto imageC = sol::Image2DArray::create(sol::Image2DArray::Settings{
+        .memoryManager = manager,
+        .size = {1024u, 512u},
+        ...
+    });
 
     // Do some stuff with images, like uploading data and making textures.
     ...
-
-    // Deallocate once they're no longer in use.
-    // Note: Calling any method on destroyed images is undefined behaviour.
-    collection.destroyImage(imageA);
-    collection.destroyImage(imageB);
-    collection.destroyImage(imageC);
 
 Each class provides a simple interface for uploading data to it, retrieving its data and placing barriers as part of a
 :doc:`/modules/memory/transaction`. There are some guidelines you must follow that apply to all types of images:

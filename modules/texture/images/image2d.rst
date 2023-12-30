@@ -4,34 +4,34 @@ Image2D
 The :code:`sol::Image2D` class manages a 2-dimensional, single layer image. Internally it holds an instance of
 :code:`sol::VulkanImage`, which manages the actual Vulkan image resource handle.
 
-A new instance can be created through the :code:`createImage2D` method of the :code:`sol::TextureCollection`. This
-allocates a new image with uninitialized data:
+A new instance can be created through the static :code:`create` method. This allocates a new image with uninitialized
+data:
 
 .. code-block:: cpp
     :caption: Creating a 512x512 RGBA image for sampling in a fragment shader.
 
     sol::MemoryManager&                 manager = ...;
     sol::TransactionManager& transactionManager = ...;
-    sol::TextureCollection&          collection = ...;
 
-    sol::Image2D& image = collection.createImage2D(
+    sol::Image2DPtr image = sol::Image2D::create(sol::Image2D::Settings{
+        .memoryManager = manager,
         // 512x512 pixels.
-        {512, 512},
+        .size = {512u, 512u},
         // 8 bits per channel, srgb.
-        VK_FORMAT_R8G8B8A8_SRGB,
+        .format = VK_FORMAT_R8G8B8A8_SRGB,
         // No mipmaps.
-        1,
+        .levels = 1,
         // We must also enable TRANSFER_DST, otherwise we cannot upload data.
-        VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
+        .usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
         // This is a color image.
-        VK_IMAGE_ASPECT_COLOR_BIT,
+        .aspect = VK_IMAGE_ASPECT_COLOR_BIT,
         // Don't care about initial layout, that will be handled when uploading data.
-        VK_IMAGE_LAYOUT_UNDEFINED,
+        .initialLayout = VK_IMAGE_LAYOUT_UNDEFINED,
         // Place image on the graphics queue.
-        manager.getGraphicsQueue().getFamily(),
+        .initialOwner = manager.getGraphicsQueue().getFamily(),
         // Unless we are on an integrated GPU, every image should use optimal tiling.
-        VK_IMAGE_TILING_OPTIMAL
-    );
+        .tiling = VK_IMAGE_TILING_OPTIMAL
+    });
 
 Setting the image data is done through the :code:`setData` method. In collaboration with a :code:`sol::Transaction` the
 image object will create a staging buffer for transferring the specified data. This also requires a barrier to
@@ -73,7 +73,7 @@ transaction:
     
     // Because allocation of the staging buffer might fail,
     // you should always check the return value of setData.
-    if (!image.setData(*transaction,
+    if (!image->setData(*transaction,
                        data.data(),
                        sizeof(uint32_t) * data.size(),
                        barrier,
