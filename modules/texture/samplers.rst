@@ -14,18 +14,21 @@ The :code:`sol::Sampler...` classes manage a sampler object. Since samplers cann
 parameters are specified on creation.
 
 .. code-block:: cpp
-    :caption: Creating and destroying some samplers.
+    :caption: Creating some samplers.
 
-    sol::TextureCollection& collection = ...;
+    sol::VulkanDevice& device = ...;
 
     // Create a number of samplers.
-    auto& samplerA = collection.createSampler2D();
-    auto& samplerB = collection.createSampler3D(VK_FILTER_NEAREST, VK_FILTER_NEAREST);
+    auto samplerA = sol::Sampler2D::create(sol::Sampler2D::Settings{
+        .device = device,
+        .magFilter = VK_FILTER_NEAREST,
+        ...
+    });
+    auto samplerB = sol::Sampler3D::create(sol::Sampler3D::Settings{
+        .device = device,
+        .magFilter = VK_FILTER_NEAREST,
+        ...
+    });
 
     // Do some stuff with samplers, like making textures.
     ...
-
-    // Deallocate once they're no longer in use.
-    // Note: Calling any method on destroyed samplers is undefined behaviour.
-    collection.destroySampler(samplerA);
-    collection.destroySampler(samplerB);
